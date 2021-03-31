@@ -8,10 +8,11 @@ return [
     'save_btn' => 'Hifadhi',
 
 
+    'watch_trailer' => 'Angalia Trailer',
     'add_trailer' => 'Ongeza Trailer',
     'edit_trailer' => 'Badilisha Trailer',
     'movie_title' => 'Kichwa',
-    'movie_description' => 'Maelezo',
+    'movie_desc' => 'Maelezo',
     'movie_release_date' => 'Tarehe ya Kutolewa',
     'movie_thumbnail' => 'Kijipicha',
     'movie_video' => 'Video',

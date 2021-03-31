@@ -35,7 +35,8 @@ class SettingsController extends Controller
                 'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             ];
             $model->update($id, $data);
-            return redirect()->to('/movies');
+            $locale = $session->get('lang');
+            return redirect()->to('../' . $locale . '/movies');
         }else {
             $data['validation'] = $this->validator;
             echo view('shared/header');

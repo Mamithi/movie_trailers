@@ -31,6 +31,16 @@ class MoviesController extends Controller
 
     }
 
+    public function view($id = null) {
+        helper(['form']);
+        $model = new Movie();
+        $data['movie'] = $model->where('id', $id)->first();
+        $session = Session();
+        echo view('shared/header');
+        echo view('movies/view', $data);
+        echo view('shared/footer');
+    }
+
     public function addMovieForm()
     {
         helper(['form']);
@@ -48,8 +58,6 @@ class MoviesController extends Controller
     public function addMovie()
     {
         helper(['form']);
-
-
         $rules = [
             'title' => 'required|min_length[3]|max_length[100]',
             'desc' => 'required|min_length[3]|max_length[1000]',
@@ -60,11 +68,11 @@ class MoviesController extends Controller
                 'mime_in[thumbnail,image/jpg,image/jpeg,image/png]',
                 'max_size[thumbnail,4096]',
             ],
-//            'video_file' => [
-//                'uploaded[video_file]',
-//                'mime_in[video_file,video/mp4]',
-//                'max_size[video_file,10240]',
-//            ],
+            'video_file' => [
+                'uploaded[video_file]',
+                'mime_in[video_file,video/mp4]',
+                'max_size[video_file,10240]',
+            ],
 //            'video_file' => 'required',
 
         ];
@@ -74,7 +82,6 @@ class MoviesController extends Controller
             $thumbnail = $this->request->getFile('thumbnail');
             $imageName = $thumbnail->getRandomName();
             $thumbnail->move('uploads/', $imageName);
-//            $thumbnail->move(WRITEPATH.'public/uploads');
 
             $thumbnailData = [
                 'name' => $thumbnail->getName(),
@@ -82,7 +89,8 @@ class MoviesController extends Controller
             ];
 
             $video = $this->request->getFile('video_file');
-            $video->move(WRITEPATH . 'uploads');
+            $videoName = $video->getRandomName();
+            $video->move('uploads/', $videoName);
 
             $videoData = [
                 'name' => $video->getName(),
@@ -137,6 +145,8 @@ class MoviesController extends Controller
             'desc' => $this->request->getVar('desc'),
             'release_date' => $this->request->getVar('release_date'),
         ];
+
+
 
         $model->update($id, $data);
 

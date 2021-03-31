@@ -1,17 +1,3 @@
 body {
-
-}
-.movie-card {
-    width: 17rem;
-    /*min-height: 200px !important;*/
-}
-
-.movie-card-action-btns {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-}
-
-.movie-image {
-    min-height: 200px !important;
+   background-color: #85271f;
 }

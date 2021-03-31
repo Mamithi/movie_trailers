@@ -41,6 +41,7 @@ $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 //});
 
 $routes->get('/{locale}/movies', 'MoviesController::index', ['filter' => 'auth']);
+$routes->get('/{locale}/movies/view/(:any)', 'MoviesController::view/$1', ['filter' => 'auth']);
 $routes->get('/{locale}/movies/add', 'MoviesController::addMovieForm', ['filter' => 'auth']);
 $routes->post('/{locale}/movies/add', 'MoviesController::addMovie', ['filter' => 'auth']);
 $routes->get('/{locale}/movies/edit/(:any)', 'MoviesController::edit/$1', ['filter' => 'auth']);

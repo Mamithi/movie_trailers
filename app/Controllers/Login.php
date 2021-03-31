@@ -15,7 +15,9 @@ class Login extends Controller
         helper(['form']);
         $session = Session();
         if($session->get('id')) {
-            return redirect()->to('/movies');
+            $locale = $session->get('lang');
+            return redirect()->to('../' . $locale . '/movies');
+//            return redirect()->to('/movies');
         }else{
             echo view('login');
         }
