@@ -26,6 +26,13 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="password">
                 </div>
+                <div class="mb-3">
+                    <label for="language" class="form-label">Select Language</label>
+                    <select name="language" id="language" class="form-control">
+                        <option value="en">English</option>
+                        <option value="sw">Kiswahili</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
         </div>

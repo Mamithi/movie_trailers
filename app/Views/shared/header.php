@@ -12,19 +12,19 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/movies">Movie Trailers</a>
+        <a class="navbar-brand" href="<?php echo base_url() . '/' . $_SESSION['lang']?>/movies"><?= lang("Text.page_title") ?></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                My Account
+                <?= lang("Text.account") ?>
             </a>
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><?php echo $_SESSION['firstname'] . ' ' .$_SESSION['lastname'] ?><li>
-                <li><a class="dropdown-item" href="../change/password">Change Password</a></li>
-                <li><a class="dropdown-item" href="../logout">Logout</a></li>
+                <li><a class="dropdown-item" href="../change/password"><?= lang("Text.change_password") ?></a></li>
+                <li><a class="dropdown-item" href="../logout"><?= lang("Text.logout") ?></a></li>
             </ul>
         </div>
     </div>

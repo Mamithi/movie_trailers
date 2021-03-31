@@ -28,6 +28,10 @@ class Login extends Controller
         $model = new User();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
+
+        $locale = $this->request->getVar('language');
+        $session->remove('lang');
+
         $data = $model->where('email', $email)->first();
         if ($data) {
             $pass = $data['password'];
@@ -38,10 +42,11 @@ class Login extends Controller
                     'firstname' => $data['firstname'],
                     'lastname' => $data['lastname'],
                     'email' => $data['email'],
-                    'logged_in' => true
+                    'logged_in' => true,
+                    'lang' => $locale,
                 ];
                 $session->set($sessionData);
-                return redirect()->to('/movies');
+                return redirect()->to('../' .$locale.'/movies');
             } else {
                 $session->setFlashdata('msg', 'Wrong Credentials');
                 return redirect()->to('/login');

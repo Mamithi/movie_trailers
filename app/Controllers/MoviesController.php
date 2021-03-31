@@ -7,6 +7,7 @@ namespace App\Controllers;
 use App\Models\Movie;
 use CodeIgniter\Controller;
 
+
 class MoviesController extends Controller
 {
     private $upload;
@@ -14,13 +15,8 @@ class MoviesController extends Controller
     public function index()
     {
         helper(['form']);
-        $model = new Movie();
-
-        $locale = $this->request->getLocale();
-
-
         $session = Session();
-
+        $model = new Movie();
 
         $data['movies'] = $model->where('users_id', $session->get('id'))->findAll();
 
@@ -106,7 +102,8 @@ class MoviesController extends Controller
             ];
 
             $model->save($data);
-            return redirect()->to('/movies');
+            $locale = $session->get('lang');
+            return redirect()->to('../' . $locale . '/movies');
 
         } else {
 
@@ -129,7 +126,8 @@ class MoviesController extends Controller
         echo view('shared/footer');
     }
 
-    public function update() {
+    public function update()
+    {
         helper(['form', 'url']);
         $model = new Movie();
         $id = $this->request->getVar('id');
@@ -142,12 +140,17 @@ class MoviesController extends Controller
 
         $model->update($id, $data);
 
-        return redirect()->to('/movies');
+        $session = Session();
+        $locale = $session->get('lang');
+        return redirect()->to('../' . $locale . '/movies');
     }
 
-    public function delete($id = null) {
+    public function delete($id = null)
+    {
         $model = new Movie();
         $data['movie'] = $model->where('id', $id)->delete();
-        return redirect()->to('/movies');
+        $session = Session();
+        $locale = $session->get('lang');
+        return redirect()->to('../' . $locale . '/movies');
     }
 }

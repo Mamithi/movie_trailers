@@ -7,9 +7,8 @@ $routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
-	require SYSTEMPATH . 'Config/Routes.php';
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
+    require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /**
@@ -35,14 +34,20 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Login::index');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('/movies', 'MoviesController::index', ['filter' => 'auth']);
-$routes->get('/movies/add', 'MoviesController::addMovieForm', ['filter' => 'auth']);
-$routes->post('/movies/add', 'MoviesController::addMovie', ['filter' => 'auth']);
-$routes->get('/movies/edit/(:any)', 'MoviesController::edit/$1', ['filter' => 'auth']);
-$routes->post('/movies/edit', 'MoviesController::update', ['filter' => 'auth']);
-$routes->get('/movies/delete/(:any)', 'MoviesController::delete/$1', ['filter' => 'auth']);
-$routes->get('/change/password', 'SettingsController::index', ['filter' => 'auth']);
-$routes->post('/change/password', 'SettingsController::save', ['filter' => 'auth']);
+
+//$routes->group('/{locale}/movies', ['filter' => 'auth'], function ($routes) {
+//    $routes->get('/', 'MoviesController::index');
+//    $routes->get('/add', 'MoviesController::addMovieForm');
+//});
+
+$routes->get('/{locale}/movies', 'MoviesController::index', ['filter' => 'auth']);
+$routes->get('/{locale}/movies/add', 'MoviesController::addMovieForm', ['filter' => 'auth']);
+$routes->post('/{locale}/movies/add', 'MoviesController::addMovie', ['filter' => 'auth']);
+$routes->get('/{locale}/movies/edit/(:any)', 'MoviesController::edit/$1', ['filter' => 'auth']);
+$routes->post('/{locale}/movies/edit', 'MoviesController::update', ['filter' => 'auth']);
+$routes->get('/{locale}/movies/delete/(:any)', 'MoviesController::delete/$1', ['filter' => 'auth']);
+$routes->get('/{locale}/change/password', 'SettingsController::index', ['filter' => 'auth']);
+$routes->post('/{locale}/change/password', 'SettingsController::save', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------
@@ -57,7 +62,6 @@ $routes->post('/change/password', 'SettingsController::save', ['filter' => 'auth
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
