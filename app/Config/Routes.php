@@ -37,6 +37,9 @@ $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('/movies', 'MoviesController::index', ['filter' => 'auth']);
 $routes->get('/movies/add', 'MoviesController::addMovieForm', ['filter' => 'auth']);
 $routes->post('/movies/add', 'MoviesController::addMovie', ['filter' => 'auth']);
+$routes->get('/movies/edit/(:any)', 'MoviesController::edit/$1', ['filter' => 'auth']);
+$routes->post('/movies/edit', 'MoviesController::update', ['filter' => 'auth']);
+$routes->get('/movies/delete/(:any)', 'MoviesController::delete/$1', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

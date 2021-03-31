@@ -74,7 +74,9 @@ class MoviesController extends Controller
 
         if ($this->validate($rules)) {
             $thumbnail = $this->request->getFile('thumbnail');
-            $thumbnail->move(WRITEPATH . 'uploads');
+            $imageName = $thumbnail->getRandomName();
+            $thumbnail->move('uploads/', $imageName);
+//            $thumbnail->move(WRITEPATH.'public/uploads');
 
             $thumbnailData = [
                 'name' => $thumbnail->getName(),
@@ -112,5 +114,38 @@ class MoviesController extends Controller
 
         }
 
+    }
+
+    public function edit($id = null)
+    {
+        $model = new Movie();
+        $data['movie'] = $model->where('id', $id)->first();
+//        return view('movies/edit', $data);
+
+        echo view('shared/header');
+        echo view('movies/edit', $data);
+        echo view('shared/footer');
+    }
+
+    public function update() {
+        helper(['form', 'url']);
+        $model = new Movie();
+        $id = $this->request->getVar('id');
+
+        $data = [
+            'title' => $this->request->getVar('title'),
+            'desc' => $this->request->getVar('desc'),
+            'release_date' => $this->request->getVar('release_date'),
+        ];
+
+        $model->update($id, $data);
+
+        return redirect()->to('/movies');
+    }
+
+    public function delete($id = null) {
+        $model = new Movie();
+        $data['movie'] = $model->where('id', $id)->delete();
+        return redirect()->to('/movies');
     }
 }
