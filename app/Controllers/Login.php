@@ -35,7 +35,7 @@ class Login extends Controller
                     'logged_in' => true
                 ];
                 $session->set($sessionData);
-                return redirect()->to('/dashboard');
+                return redirect()->to('/movies');
             } else {
                 $session->setFlashdata('msg', 'Wrong Credentials');
                 return redirect() - to('/login');
