@@ -24,6 +24,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><?php echo $_SESSION['firstname'] . ' ' .$_SESSION['lastname'] ?><li>
                 <li><a class="dropdown-item" href="../change/password">Change Password</a></li>
+                <li><a class="dropdown-item" href="../logout">Logout</a></li>
             </ul>
         </div>
     </div>

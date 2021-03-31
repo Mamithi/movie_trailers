@@ -16,6 +16,8 @@ class MoviesController extends Controller
         helper(['form']);
         $model = new Movie();
 
+        $locale = $this->request->getLocale();
+
 
         $session = Session();
 

@@ -33,6 +33,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Login::index');
+$routes->get('/logout', 'Login::logout');
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('/movies', 'MoviesController::index', ['filter' => 'auth']);
 $routes->get('/movies/add', 'MoviesController::addMovieForm', ['filter' => 'auth']);
@@ -40,6 +41,8 @@ $routes->post('/movies/add', 'MoviesController::addMovie', ['filter' => 'auth'])
 $routes->get('/movies/edit/(:any)', 'MoviesController::edit/$1', ['filter' => 'auth']);
 $routes->post('/movies/edit', 'MoviesController::update', ['filter' => 'auth']);
 $routes->get('/movies/delete/(:any)', 'MoviesController::delete/$1', ['filter' => 'auth']);
+$routes->get('/change/password', 'SettingsController::index', ['filter' => 'auth']);
+$routes->post('/change/password', 'SettingsController::save', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

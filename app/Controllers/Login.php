@@ -13,7 +13,13 @@ class Login extends Controller
     public function index()
     {
         helper(['form']);
-        echo view('login');
+        $session = Session();
+        if($session->get('id')) {
+            return redirect()->to('/movies');
+        }else{
+            echo view('login');
+        }
+
     }
 
     public function auth()
@@ -38,7 +44,7 @@ class Login extends Controller
                 return redirect()->to('/movies');
             } else {
                 $session->setFlashdata('msg', 'Wrong Credentials');
-                return redirect() - to('/login');
+                return redirect()->to('/login');
             }
         } else {
             $session->setFlashdata('msg', 'Uer Does not exist');
