@@ -16,15 +16,15 @@
 </head>
 <body>
 <div class="container" style="margin: 50px 0 0 400px; overflow-x: hidden !important; max-width: 60%;">
-    <div class="card text-center" style="width: 30rem">
+    <div class="card" style="width: 30rem">
         <div class="card-header">
             Sign Up
         </div>
         <div class="card-body">
             <div class="row justify-content-md-center">
-                <div class="col-6">
-                    <?php if (session()->getFlashdata('msg')): ?>
-                        <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
+                <div class="col-12">
+                    <?php if (isset($validation)): ?>
+                        <div class="alert alert-danger"><?= $validation->listErrors() ?></div>
                     <?php endif; ?>
             <form action="/register/save" method="post">
                 <div class="mb-3">
@@ -47,9 +47,11 @@
                     <label for="passwordConfirm" class="form-label">Confirm Password</label>
                     <input type="password" name="password_confirm" class="form-control" id="passwordConfirm">
                 </div>
+                <br>
                 <div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" style="float: right;">Register</button>
                 </div>
+                <br>
                 Already have an account? <a href="/login">Login</a>
             </form>
                 </div>
