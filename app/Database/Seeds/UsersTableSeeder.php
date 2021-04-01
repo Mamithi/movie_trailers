@@ -9,10 +9,19 @@ class UsersTableSeeder extends Seeder
         $admin = [
             'firstname' => 'John',
             'lastname' => 'Doe',
-            'email' => 'admin@test.com',
+            'email' => 'admin@gmail.com',
             'password' => password_hash('password', PASSWORD_DEFAULT)
         ];
 
         $this->db->table('users')->insert($admin);
+
+        $user = [
+            'firstname' => 'Jane',
+            'lastname' => 'Doe',
+            'email' => 'user@gmail.com',
+            'password' => password_hash('password', PASSWORD_DEFAULT)
+        ];
+
+        $this->db->table('users')->insert($user);
     }
 }

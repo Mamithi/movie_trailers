@@ -1,6 +1,9 @@
 <a href="<?php echo base_url() . '/' . $_SESSION['lang']; ?>/movies/add" style="margin: auto 45%"
    class="btn btn-primary"> <?= lang("Text.add_trailer") ?></a>
 <div class="container" style="padding: 10px;">
+    <?php if(count($movies) < 1){ ?>
+        <div> <?= lang("Text.no_movie_trailer") ?>.</div>
+    <?php } ?>
 
     <div class="row align-items-start">
         <?php
@@ -31,6 +34,13 @@
         ?>
     </div>
 </div>
+
+<style>
+    .movie-image {
+        width: 14rem;
+        height: 14rem;
+    }
+</style>
 
 
 

@@ -16,6 +16,7 @@ return [
     'movie_release_date' => 'Release Date',
     'movie_thumbnail' => 'Thumbnail',
     'movie_video' => 'Video',
+    'no_movie_trailer' => 'You dont have any trailers at the moment. Please add a movie trailer to manage.',
 
     'new_password' => 'New Password',
     'confirm_password' => 'Confirm Password',

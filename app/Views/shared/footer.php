@@ -1,9 +1,9 @@
-<footer style="margin-top: 20%;">
-<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2021 Copyright:
-    <a class="text-dark" href="<?php echo base_url() . '/' . $_SESSION['lang']?>/movies"><?= lang("Text.page_title") ?></a>
-</div>
-</footer>
+<!--<footer style="margin-top: 20%;">-->
+<!--<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">-->
+<!--    © 2021 Copyright:-->
+<!--    <a class="text-dark" href="--><?php //echo base_url() . '/' . $_SESSION['lang']?><!--/movies">--><?//= lang("Text.page_title") ?><!--</a>-->
+<!--</div>-->
+<!--</footer>-->
 
 <!-- Popper.js first, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

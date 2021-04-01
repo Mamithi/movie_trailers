@@ -16,6 +16,7 @@ return [
     'movie_release_date' => 'Tarehe ya Kutolewa',
     'movie_thumbnail' => 'Kijipicha',
     'movie_video' => 'Video',
+    'no_movie_trailer' => 'Hauna trailer yoyote ya sinema Tafadhali ongeza trailer ndio uweze kuendelea na huduma.',
 
     'new_password' => 'Nywila Mpya',
     'confirm_password' => 'Thibitisha Nenosiri',

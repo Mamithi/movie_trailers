@@ -31,7 +31,8 @@ class MoviesController extends Controller
 
     }
 
-    public function view($id = null) {
+    public function view($id = null)
+    {
         helper(['form']);
         $model = new Movie();
         $data['movie'] = $model->where('id', $id)->first();
@@ -47,10 +48,7 @@ class MoviesController extends Controller
         $data = [];
         $session = Session();
 //        echo view('movies/add');
-        echo view('shared/header', [
-            'name' => $session->get('firstname') . ' ' . $session->get('lastname'),
-            'email' => $session->get('email')
-        ]);
+        echo view('shared/header');
         echo view('movies/add', $data);
         echo view('shared/footer');
     }
@@ -70,7 +68,7 @@ class MoviesController extends Controller
             ],
             'video_file' => [
                 'uploaded[video_file]',
-                'mime_in[video_file,video/mp4]',
+                'mime_in[video_file,video/mp4, video/mkv]',
                 'max_size[video_file,10240]',
             ],
 //            'video_file' => 'required',
@@ -114,10 +112,10 @@ class MoviesController extends Controller
             return redirect()->to('../' . $locale . '/movies');
 
         } else {
-
-
             $data['validation'] = $this->validator;
+            echo view('shared/header');
             echo view('movies/add', $data);
+            echo view('shared/footer');
 
         }
 
@@ -146,6 +144,34 @@ class MoviesController extends Controller
             'release_date' => $this->request->getVar('release_date'),
         ];
 
+
+        if (!empty($_FILES['thumbnail']['name'])) {
+            $thumbnail = $this->request->getFile('thumbnail');
+            $imageName = $thumbnail->getRandomName();
+            $thumbnail->move('uploads/', $imageName);
+
+            $thumbnailData = [
+                'name' => $thumbnail->getName(),
+                'type' => $thumbnail->getClientMimeType(),
+            ];
+
+            $data['thumbnail'] = $thumbnailData['name'];
+
+
+        }
+
+
+        if (!empty($_FILES['video_file']['name'])) {
+            $video = $this->request->getFile('video_file');
+            $videoName = $video->getRandomName();
+            $video->move('uploads/', $videoName);
+
+            $videoData = [
+                'name' => $video->getName(),
+                'type' => $video->getClientMimeType(),
+            ];
+            $data['video'] = $videoData['name'];
+        }
 
 
         $model->update($id, $data);

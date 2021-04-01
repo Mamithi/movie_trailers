@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <div class="card-footer text-muted">
-                <form action="/movies/edit" method="post" enctype="multipart/form-data">
+                <form action="/<?php echo $_SESSION['lang'] ?>/movies/edit" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $movie['id'] ?>">
                     <div class="mb-3">
                         <label for="title" class="form-label"><?= lang("Text.movie_title") ?></label>
